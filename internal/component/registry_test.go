@@ -45,6 +45,7 @@ func Test_validatePrefixMatch(t *testing.T) {
 		expectValid bool
 	}{
 		{check: "remote.s3", expectValid: true},
+		{check: "remote.aws_secretsmanager", expectValid: true},
 		{check: "remote", expectValid: false},
 		{check: "test2", expectValid: true},
 		{check: "test.new", expectValid: false},
