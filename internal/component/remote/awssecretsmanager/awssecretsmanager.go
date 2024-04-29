@@ -60,6 +60,7 @@ func New(o component.Options, args Arguments) (*Component, error) {
 
 	s := &Component{
 		opts:       o,
+		log:        o.Logger,
 		args:       args,
 		health:     component.Health{},
 		updateChan: make(chan result),
@@ -184,8 +185,6 @@ func (s *Component) handleContentPolling(newContent map[string]interface{}, err 
 		for key, value := range newContent {
 			switch value := value.(type) {
 			case string:
-				newExports.Data[key] = alloytypes.Secret(value)
-			case []byte:
 				newExports.Data[key] = alloytypes.Secret(value)
 
 			default:
